@@ -97,11 +97,10 @@
 				FF7A2CA3205882C60018C3E2 /* AppDelegate.swift */,
 				FF7A2CB5205882F50018C3E2 /* RAViewController.swift */,
 				FF7A2CB7205882FF0018C3E2 /* RANavigationViewController.swift */,
-				FF7A2CC52058B22F0018C3E2 /* RABackendService.swift */,
-				FF7A2CCD2058E8250018C3E2 /* RAURLFetcher.swift */,
-				FF7A2CCC2058E4660018C3E2 /* Models */,
 				FF7A2CBD205885190018C3E2 /* ListingsScreen */,
 				FF7A2CBE205885280018C3E2 /* CommentsScreen */,
+				FF7A2CCC2058E4660018C3E2 /* Models */,
+				FF7A2CD1205924B10018C3E2 /* Helpers */,
 				FF7A2CC92058D4E30018C3E2 /* Extensions */,
 				FF7A2CAA205882C60018C3E2 /* Assets.xcassets */,
 				FF7A2CAC205882C60018C3E2 /* LaunchScreen.storyboard */,
@@ -142,6 +141,15 @@
 				FF7A2CC72058B6430018C3E2 /* RAFeedListingItem.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		FF7A2CD1205924B10018C3E2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FF7A2CCD2058E8250018C3E2 /* RAURLFetcher.swift */,
+				FF7A2CC52058B22F0018C3E2 /* RABackendService.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
