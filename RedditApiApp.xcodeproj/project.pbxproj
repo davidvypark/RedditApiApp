@@ -21,6 +21,7 @@
 		FF7A2CC82058B6430018C3E2 /* RAFeedListingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2CC72058B6430018C3E2 /* RAFeedListingItem.swift */; };
 		FF7A2CCB2058D4F70018C3E2 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2CCA2058D4F70018C3E2 /* UIFontExtension.swift */; };
 		FF7A2CCE2058E8250018C3E2 /* RAURLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2CCD2058E8250018C3E2 /* RAURLFetcher.swift */; };
+		FF7A2CD32059900A0018C3E2 /* RAListingsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7A2CD22059900A0018C3E2 /* RAListingsBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FF7A2CC72058B6430018C3E2 /* RAFeedListingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAFeedListingItem.swift; sourceTree = "<group>"; };
 		FF7A2CCA2058D4F70018C3E2 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		FF7A2CCD2058E8250018C3E2 /* RAURLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAURLFetcher.swift; sourceTree = "<group>"; };
+		FF7A2CD22059900A0018C3E2 /* RAListingsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAListingsBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				FF7A2CB9205885070018C3E2 /* RAListingsViewController.swift */,
+				FF7A2CD22059900A0018C3E2 /* RAListingsBannerView.swift */,
 				FF7A2CBF205885530018C3E2 /* RAListingsTableViewCell.swift */,
 			);
 			path = ListingsScreen;
@@ -284,6 +287,7 @@
 			files = (
 				FF7A2CC82058B6430018C3E2 /* RAFeedListingItem.swift in Sources */,
 				FF7A2CBA205885070018C3E2 /* RAListingsViewController.swift in Sources */,
+				FF7A2CD32059900A0018C3E2 /* RAListingsBannerView.swift in Sources */,
 				FF7A2CBC205885150018C3E2 /* RACommentsViewController.swift in Sources */,
 				FF7A2CB6205882F50018C3E2 /* RAViewController.swift in Sources */,
 				FF7A2CC0205885530018C3E2 /* RAListingsTableViewCell.swift in Sources */,

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import PromiseKit
 
+private let kBannerHeight: CGFloat = 70
+private let kStatusBarHeight: CGFloat = 20
+private let kBannerSidePadding: CGFloat = 10
+
 //MARK: - RAListingsViewController
 
 final class RAListingsViewController: RAViewController {
@@ -31,14 +35,17 @@ final class RAListingsViewController: RAViewController {
     return table
   }()
   
+  private let bannerView = RAListingsBannerView()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
-    fetchAndUpdateData()
+    setupBanner()
+    fetchAndUpdateData(param: "hot")
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    tableView.reloadData()
+//    tableView.reloadData()
   }
   
   //MARK: - Private
@@ -49,7 +56,7 @@ final class RAListingsViewController: RAViewController {
     
     view.addSubview(tableView)
     view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal,
-                                          toItem: view, attribute: .top, multiplier: 1, constant: 50))
+                                          toItem: view, attribute: .top, multiplier: 1, constant: kBannerHeight))
     view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal,
                                           toItem: view, attribute: .bottom, multiplier: 1, constant: 0))
     view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .left, relatedBy: .equal,
@@ -60,11 +67,24 @@ final class RAListingsViewController: RAViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
   }
   
-  private func fetchAndUpdateData() {
+  private func setupBanner() {
+    bannerView.delegate = self
+    view.addSubview(bannerView)
+    view.addConstraint(NSLayoutConstraint(item: bannerView, attribute: .top, relatedBy: .equal,
+                                          toItem: view, attribute: .top, multiplier: 1, constant: kStatusBarHeight))
+    view.addConstraint(NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal,
+                                          toItem: tableView, attribute: .top, multiplier: 1, constant: 0))
+    view.addConstraint(NSLayoutConstraint(item: bannerView, attribute: .left, relatedBy: .equal,
+                                          toItem: view, attribute: .left, multiplier: 1, constant: kBannerSidePadding))
+    view.addConstraint(NSLayoutConstraint(item: bannerView, attribute: .right, relatedBy: .equal,
+                                          toItem: view, attribute: .right, multiplier: 1, constant: -kBannerSidePadding))
+  }
+  
+  private func fetchAndUpdateData(param: String) {
     firstly {
-      backendService.fetchFeedListings()
+      backendService.fetchFeedListings(param)
       }.done { [weak self] result in
-        
+        self?.feedListingsArray.removeAll()
         result.forEach({ (item) in
           guard let feedItem = RAFeedListingItem(dict: item as [String : AnyObject]) else {
             return
@@ -77,6 +97,17 @@ final class RAListingsViewController: RAViewController {
     }
   }
   
+}
+
+//MARK: - RAListingsBannerViewDelegate
+
+extension RAListingsViewController: RAListingsBannerViewDelegate {
+  
+  func listingsBannerView(_ view: RAListingsBannerView, didPressButtonTitle title: String) {
+    feedListingsArray.removeAll()
+    tableView.reloadData()
+    fetchAndUpdateData(param: title.lowercased())
+  }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -105,6 +136,7 @@ extension RAListingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     //TODO: Add Activity Indicator
+    tableView.isUserInteractionEnabled = false
     firstly {
       backendService.fetchComments(subreddit: model.subreddit, article: model.article)
       }.done { [weak self] result in
@@ -116,7 +148,9 @@ extension RAListingsViewController: UITableViewDelegate, UITableViewDataSource {
         })
         let vc = RACommentsViewController(comments: comments)
         self?.navigationController?.pushViewController(vc, animated: true)
+        tableView.isUserInteractionEnabled = true
       }.catch { error in
+        tableView.isUserInteractionEnabled = true
         print(error)
       }
   }

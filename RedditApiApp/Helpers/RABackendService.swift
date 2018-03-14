@@ -15,11 +15,11 @@ typealias RAAnyObjectDictionary = [String: Any]
 
 final class RABackendService {
   
-  func fetchFeedListings() -> Promise<[RAAnyObjectDictionary]> {
+  func fetchFeedListings(_ param: String) -> Promise<[RAAnyObjectDictionary]> {
 
     return Promise { seal in
 
-      Alamofire.request("http://www.reddit.com/r/all/top.json")
+      Alamofire.request("http://www.reddit.com/r/all/\(param).json")
         .responseJSON { response in
           if let json = response.result.value as? [String: AnyObject],
              let data = json["data"],
