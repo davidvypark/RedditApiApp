@@ -7,5 +7,4 @@ UI for Error Handling
 Animations for a better UX
 Loading indicators
 
-![alt text](screenshots/RedditAPIScreenshot1.png)
-![alt text](screenshots/RedditAPIScreenshot2.png)
+![alt text](screenshots/RedditAPIScreenshot1.png) ![alt text](screenshots/RedditAPIScreenshot2.png)
